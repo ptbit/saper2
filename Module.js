@@ -83,7 +83,7 @@ class Module {
                 let cell = matrix[i][j];
                 // console.log(matrix[i][j])
                 if(cell.id === cellId){
-                    console.log('ты искал',cell.id, 'у неё есть соседи:')
+                    // console.log('ты искал',cell.id, 'у неё есть соседи:')
                     if (cell.id%9!=0){neighbors.push(cell.id+1)} //справа
                     if (j>0){neighbors.push(cell.id-1)} //слева
                     if (i>0){neighbors.push(cell.id-9)} //вверх
