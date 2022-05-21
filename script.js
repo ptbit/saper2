@@ -1,6 +1,6 @@
 let W = 9
 let H = 9
-let M = 9
+let M = 3
 let leftButtonDown = false
 let rightButtonDown = false
 
@@ -147,6 +147,7 @@ function mouseDown (e) {
                     }
                 }
             }
+            checkWin()
         }
     //  }
      
@@ -187,7 +188,9 @@ function mouseDown (e) {
                 
                 }
             }
-        }}
+        }
+        checkWin()
+    }
         //ПКМ
         if (e.which == 3) 
         {
@@ -199,6 +202,7 @@ function mouseDown (e) {
                     {  
                         cell.flag = !cell.flag
                         render()
+                        checkWin()
                     }
                 }
             }
@@ -209,7 +213,6 @@ function mouseDown (e) {
 //отрисовываем в контейнер ВСЕ предварительно созданные ячейки
 function render () {
     console.log('RENDER')
-    // console.log(newMatrix.mas)
     mainDiv.innerHTML = ''
     for (i in newMatrix.mas){
         for (j in newMatrix.mas[i]) createElement(newMatrix.mas[i][j])
@@ -234,6 +237,7 @@ for (var i = 0; i < allDivInScreen.length; i++)
                 }
             }
         }
+        checkWin()
         render()
     })
 }
@@ -263,4 +267,27 @@ let aroundCells = newMatrix.allAroundCells(cell.id, newMatrix.mas)
                 }
             }
         }
+}
+
+
+function checkWin () {
+    // let findMines = 0
+    let leftCells = 0
+    for (i in newMatrix.mas){
+        for (j in newMatrix.mas[i])
+            {
+                let cell = newMatrix.mas[i][j]
+                // if (cell.mine && cell.flag)
+                // {
+                //     findMines++
+                // }
+                if (!cell.show) {leftCells++}
+                // if (cell.flag) {leftCells++}
+            }
+        }
+        // if (findMines == M) {console.log('WIN')}
+        if (leftCells == M) {console.log('----------------------WIN----------------------')}
+        // if (leftCells == M) {console.log('WIN')}
+        console.log('leftCells=',leftCells)
+
 }
